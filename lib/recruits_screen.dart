@@ -7,24 +7,18 @@ class RecruitsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: _buildDrawer(context),  // Add this line
       appBar: AppBar(
-        title: const Text('Recruits'),
         backgroundColor: Colors.lightBlue[300],
-        actions: [
-          // Add an action button for posting recruitment
-          IconButton(
-            icon: const Icon(Icons.add_circle_outline),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const RecruitmentPostScreen(),
-                ),
-              );
-            },
-            tooltip: 'Post Recruitment',
+        title: const Text(
+          'Recruits',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
-        ],
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),  // Add this line
       ),
       body: Column(
         children: [
@@ -176,4 +170,100 @@ class RecruitsScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+// Add this method to your _RecruitsScreenState class
+Widget _buildDrawer(BuildContext context) {
+  return Drawer(
+    child: Column(
+      children: [
+        // User profile header
+        Container(
+          color: Colors.lightBlue[300],
+          padding: const EdgeInsets.symmetric(vertical: 40),
+          width: double.infinity,
+          child: Column(
+            children: [
+              // Profile image
+              CircleAvatar(
+                radius: 50,
+                backgroundColor: Colors.grey[300],
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'Joe Doe',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+        
+        // Navigation items
+        ListTile(
+          title: const Text('Profile'),
+          onTap: () {
+            Navigator.pop(context);
+            // Navigate to profile page
+          },
+        ),
+        ListTile(
+          title: const Text('Reports'),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.pushNamed(context, '/reports');
+          },
+        ),
+        ListTile(
+          title: const Text('Libraries'),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.pushNamed(context, '/documents');
+          },
+        ),
+        ListTile(
+          title: const Text('Recruits'),
+          onTap: () {
+            Navigator.pop(context);
+            // Already on recruits page, just close drawer
+          },
+        ),
+        ListTile(
+          title: const Text('Lost & Found'),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.pushNamed(context, '/lost_found');
+          },
+        ),
+        ListTile(
+          title: const Text('Setting'),
+          onTap: () {
+            Navigator.pop(context);
+            // Navigate to settings page
+          },
+        ),
+        
+        // Spacer to push "About" to the bottom
+        const Spacer(),
+        
+        // About section at the bottom
+        ListTile(
+          title: const Text('About'),
+          onTap: () {
+            Navigator.pop(context);
+            // Navigate to about page
+          },
+        ),
+        ListTile(
+          title: const Text('Home'),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.pushReplacementNamed(context, '/');
+          },
+        ),
+      ],
+    ),
+  );
 }
