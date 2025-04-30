@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'document_post_screen.dart';
+import 'app_drawer.dart';
 
 class DocumentsScreen extends StatefulWidget {
   const DocumentsScreen({super.key});
@@ -37,7 +38,8 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
       title: 'Introduction to Computer Science',
       author: 'Dr. James Smith',
       type: 'Textbook',
-      description: 'A comprehensive introduction to computer science principles and programming fundamentals.',
+      description:
+          'A comprehensive introduction to computer science principles and programming fundamentals.',
       tags: ['Computer Science', 'Programming', 'Beginner'],
       coverImage: 'assets/images/cs_book.jpg',
     ),
@@ -45,7 +47,8 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
       title: 'Advanced Calculus',
       author: 'Prof. Maria Rodriguez',
       type: 'Textbook',
-      description: 'In-depth exploration of advanced calculus concepts including multivariable calculus and differential equations.',
+      description:
+          'In-depth exploration of advanced calculus concepts including multivariable calculus and differential equations.',
       tags: ['Mathematics', 'Calculus', 'Advanced'],
       coverImage: 'assets/images/math_book.jpg',
     ),
@@ -53,7 +56,8 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
       title: 'Quantum Physics Research Paper',
       author: 'Dr. Robert Chen',
       type: 'Research Paper',
-      description: 'Recent findings in quantum entanglement and its applications in quantum computing.',
+      description:
+          'Recent findings in quantum entanglement and its applications in quantum computing.',
       tags: ['Physics', 'Quantum', 'Research'],
       coverImage: 'assets/images/physics_paper.jpg',
     ),
@@ -61,7 +65,8 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
       title: 'Campus Sustainability Report 2023',
       author: 'Environmental Committee',
       type: 'Report',
-      description: 'Annual report on campus sustainability initiatives, achievements, and future goals.',
+      description:
+          'Annual report on campus sustainability initiatives, achievements, and future goals.',
       tags: ['Environment', 'Sustainability', 'Report'],
       coverImage: 'assets/images/sustainability.jpg',
     ),
@@ -72,7 +77,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: _buildDrawer(context),
+      drawer: const AppDrawer(currentScreen: 'documents'),
       appBar: AppBar(
         backgroundColor: Colors.lightBlue[300],
         title: Text(
@@ -151,7 +156,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
             ),
           ),
         ),
-        
+
         // Document categories
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -167,9 +172,9 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
             ],
           ),
         ),
-        
+
         const SizedBox(height: 16),
-        
+
         // Documents list
         Expanded(
           child: ListView.builder(
@@ -204,9 +209,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
     return Card(
       margin: const EdgeInsets.only(bottom: 16),
       elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -238,7 +241,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
               ],
             ),
           ),
-          
+
           // Document content
           Padding(
             padding: const EdgeInsets.all(16),
@@ -258,17 +261,18 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
                       onError: (_, __) {},
                     ),
                   ),
-                  child: document.coverImage.isEmpty
-                      ? Icon(
-                          _getTypeIcon(document.type),
-                          size: 40,
-                          color: Colors.grey[600],
-                        )
-                      : null,
+                  child:
+                      document.coverImage.isEmpty
+                          ? Icon(
+                            _getTypeIcon(document.type),
+                            size: 40,
+                            color: Colors.grey[600],
+                          )
+                          : null,
                 ),
-                
+
                 const SizedBox(width: 16),
-                
+
                 // Document details
                 Expanded(
                   child: Column(
@@ -284,39 +288,41 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
                       const SizedBox(height: 4),
                       Text(
                         'By ${document.author}',
-                        style: TextStyle(
-                          color: Colors.grey[700],
-                          fontSize: 14,
-                        ),
+                        style: TextStyle(color: Colors.grey[700], fontSize: 14),
                       ),
                       const SizedBox(height: 8),
                       Text(
                         document.description,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 14,
-                        ),
+                        style: TextStyle(color: Colors.grey[600], fontSize: 14),
                       ),
                       const SizedBox(height: 8),
                       Wrap(
                         spacing: 6,
                         runSpacing: 6,
-                        children: document.tags.map((tag) => Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Text(
-                            tag,
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey[800],
-                            ),
-                          ),
-                        )).toList(),
+                        children:
+                            document.tags
+                                .map(
+                                  (tag) => Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                      vertical: 4,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[200],
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: Text(
+                                      tag,
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey[800],
+                                      ),
+                                    ),
+                                  ),
+                                )
+                                .toList(),
                       ),
                     ],
                   ),
@@ -324,7 +330,7 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
               ],
             ),
           ),
-          
+
           // Action buttons
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
@@ -393,16 +399,26 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
 
   Widget _buildRequestsView() {
     return ListView(
-      children: _documentRequests.map((doc) => _buildDocumentRequestCard(
-        doc.title,
-        doc.department,
-        doc.location,
-        doc.status,
-      )).toList(),
+      children:
+          _documentRequests
+              .map(
+                (doc) => _buildDocumentRequestCard(
+                  doc.title,
+                  doc.department,
+                  doc.location,
+                  doc.status,
+                ),
+              )
+              .toList(),
     );
   }
 
-  Widget _buildDocumentRequestCard(String title, String department, String location, String status) {
+  Widget _buildDocumentRequestCard(
+    String title,
+    String department,
+    String location,
+    String status,
+  ) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       height: 120,
@@ -431,14 +447,10 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
               ),
             ),
             child: const Center(
-              child: Icon(
-                Icons.description,
-                size: 40,
-                color: Colors.white,
-              ),
+              child: Icon(Icons.description, size: 40, color: Colors.white),
             ),
           ),
-          
+
           // Gray part (document details)
           Expanded(
             child: Container(
@@ -504,107 +516,134 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
 
     showDialog(
       context: context,
-      builder: (context) => StatefulBuilder(
-        builder: (context, setDialogState) {
-          return AlertDialog(
-            title: const Text('Request Document'),
-            content: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // Document type dropdown
-                  DropdownButtonFormField<String>(
-                    decoration: const InputDecoration(
-                      labelText: 'Document Type',
-                    ),
-                    value: selectedDocType,
-                    items: const [
-                      DropdownMenuItem(value: 'Transcript', child: Text('Transcript')),
-                      DropdownMenuItem(value: 'Degree Certificate', child: Text('Degree Certificate')),
-                      DropdownMenuItem(value: 'Recommendation Letter', child: Text('Recommendation Letter')),
-                      DropdownMenuItem(value: 'Other', child: Text('Other')),
+      builder:
+          (context) => StatefulBuilder(
+            builder: (context, setDialogState) {
+              return AlertDialog(
+                title: const Text('Request Document'),
+                content: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Document type dropdown
+                      DropdownButtonFormField<String>(
+                        decoration: const InputDecoration(
+                          labelText: 'Document Type',
+                        ),
+                        value: selectedDocType,
+                        items: const [
+                          DropdownMenuItem(
+                            value: 'Transcript',
+                            child: Text('Transcript'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'Degree Certificate',
+                            child: Text('Degree Certificate'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'Recommendation Letter',
+                            child: Text('Recommendation Letter'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'Other',
+                            child: Text('Other'),
+                          ),
+                        ],
+                        onChanged: (value) {
+                          setDialogState(() {
+                            selectedDocType = value!;
+                            if (value != 'Other') {
+                              titleController.text = value;
+                            } else {
+                              titleController.text = '';
+                            }
+                          });
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                      if (selectedDocType == 'Other')
+                        TextField(
+                          controller: titleController,
+                          decoration: const InputDecoration(
+                            labelText: 'Document Title',
+                          ),
+                        ),
+                      TextField(
+                        controller: departmentController,
+                        decoration: const InputDecoration(
+                          labelText: 'Department',
+                        ),
+                      ),
+                      TextField(
+                        controller: locationController,
+                        decoration: const InputDecoration(
+                          labelText: 'Office Location',
+                        ),
+                      ),
+                      TextField(
+                        controller: descriptionController,
+                        decoration: const InputDecoration(
+                          labelText: 'Additional Details',
+                        ),
+                        maxLines: 3,
+                      ),
                     ],
-                    onChanged: (value) {
-                      setDialogState(() {
-                        selectedDocType = value!;
-                        if (value != 'Other') {
-                          titleController.text = value;
-                        } else {
-                          titleController.text = '';
-                        }
-                      });
+                  ),
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('Cancel'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Validate and submit
+                      if ((selectedDocType != 'Other' ||
+                              titleController.text.isNotEmpty) &&
+                          departmentController.text.isNotEmpty &&
+                          locationController.text.isNotEmpty) {
+                        // Add the new document request to the list
+                        final title =
+                            selectedDocType == 'Other'
+                                ? titleController.text
+                                : selectedDocType;
+
+                        // Update state with new document request
+                        setState(() {
+                          _documentRequests.add(
+                            DocumentRequest(
+                              title: title,
+                              department: departmentController.text,
+                              location: locationController.text,
+                              status: 'Processing',
+                            ),
+                          );
+                        });
+
+                        Navigator.pop(context);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Document request submitted successfully',
+                            ),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Please fill all required fields'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      }
                     },
-                  ),
-                  const SizedBox(height: 16),
-                  if (selectedDocType == 'Other')
-                    TextField(
-                      controller: titleController,
-                      decoration: const InputDecoration(labelText: 'Document Title'),
-                    ),
-                  TextField(
-                    controller: departmentController,
-                    decoration: const InputDecoration(labelText: 'Department'),
-                  ),
-                  TextField(
-                    controller: locationController,
-                    decoration: const InputDecoration(labelText: 'Office Location'),
-                  ),
-                  TextField(
-                    controller: descriptionController,
-                    decoration: const InputDecoration(labelText: 'Additional Details'),
-                    maxLines: 3,
+                    child: const Text('Submit'),
                   ),
                 ],
-              ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text('Cancel'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  // Validate and submit
-                  if ((selectedDocType != 'Other' || titleController.text.isNotEmpty) &&
-                      departmentController.text.isNotEmpty &&
-                      locationController.text.isNotEmpty) {
-                    // Add the new document request to the list
-                    final title = selectedDocType == 'Other' ? titleController.text : selectedDocType;
-                    
-                    // Update state with new document request
-                    setState(() {
-                      _documentRequests.add(
-                        DocumentRequest(
-                          title: title,
-                          department: departmentController.text,
-                          location: locationController.text,
-                          status: 'Processing',
-                        ),
-                      );
-                    });
-                    
-                    Navigator.pop(context);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Document request submitted successfully'),
-                        backgroundColor: Colors.green,
-                      ),
-                    );
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Please fill all required fields'),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
-                  }
-                },
-                child: const Text('Submit'),
-              ),
-            ],
-          );
-        },
-      ),
+              );
+            },
+          ),
     );
   }
 
@@ -620,22 +659,16 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
             child: Column(
               children: [
                 // Profile image
-                CircleAvatar(
-                  radius: 50,
-                  backgroundColor: Colors.grey[300],
-                ),
+                CircleAvatar(radius: 50, backgroundColor: Colors.grey[300]),
                 const SizedBox(height: 10),
                 const Text(
                   'Joe Doe',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
           ),
-          
+
           // Navigation items
           ListTile(
             title: const Text('Profile'),
@@ -679,10 +712,10 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
               // Navigate to settings page
             },
           ),
-          
+
           // Spacer to push "About" to the bottom
           const Spacer(),
-          
+
           // About section at the bottom
           ListTile(
             title: const Text('About'),

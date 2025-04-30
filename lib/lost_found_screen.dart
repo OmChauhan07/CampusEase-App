@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'lost_found_post_screen.dart';
+import 'app_drawer.dart';
 
 class LostFoundScreen extends StatefulWidget {
   const LostFoundScreen({super.key});
@@ -26,7 +27,7 @@ class _LostFoundScreenState extends State<LostFoundScreen> with SingleTickerProv
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: _buildDrawer(context),
+      drawer: const AppDrawer(currentScreen: 'lost_found'),
       appBar: AppBar(
         backgroundColor: Colors.lightBlue[300],
         title: const Text(

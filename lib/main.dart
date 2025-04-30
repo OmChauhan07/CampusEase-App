@@ -4,6 +4,7 @@ import 'recruits_screen.dart';
 import 'lost_found_screen.dart';
 import 'documents_screen.dart';
 import 'routes.dart';
+import 'app_drawer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,7 +39,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: _buildDrawer(context),
+      drawer: const AppDrawer(currentScreen: 'home'),
       appBar: AppBar(
         backgroundColor: Colors.lightBlue[300],
         title: const Text(
@@ -89,95 +90,6 @@ class _HomePageState extends State<HomePage> {
             _buildCategoriesGrid(context),
           ],
         ),
-      ),
-    );
-  }
-  
-  Widget _buildDrawer(BuildContext context) {
-    return Drawer(
-      child: Column(
-        children: [
-          // User profile header
-          Container(
-            color: Colors.lightBlue[300],
-            padding: const EdgeInsets.symmetric(vertical: 40),
-            width: double.infinity,
-            child: Column(
-              children: [
-                // Profile image
-                CircleAvatar(radius: 50, backgroundColor: Colors.grey[300]),
-                const SizedBox(height: 10),
-                const Text(
-                  'Joe Doe',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-          
-          // Navigation items
-          ListTile(
-            title: const Text('Profile'),
-            onTap: () {
-              Navigator.pop(context);
-              // Navigate to profile page
-            },
-          ),
-          ListTile(
-            title: const Text('Reports'),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/reports');
-            },
-          ),
-          ListTile(
-            title: const Text('Libraries'),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/documents');
-            },
-          ),
-          ListTile(
-            title: const Text('Recruits'),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/recruits');
-            },
-          ),
-          ListTile(
-            title: const Text('Lost & Found'),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/lost_found');
-            },
-          ),
-          ListTile(
-            title: const Text('Setting'),
-            onTap: () {
-              Navigator.pop(context);
-              // Navigate to settings page
-            },
-          ),
-          
-          // Spacer to push "About" to the bottom
-          const Spacer(),
-          
-          // About section at the bottom
-          ListTile(
-            title: const Text('About'),
-            onTap: () {
-              Navigator.pop(context);
-              // Navigate to about page
-            },
-          ),
-          ListTile(
-            title: const Text('Home'),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.pushReplacementNamed(context, '/');
-            },
-          ),
-        ],
       ),
     );
   }
@@ -429,6 +341,18 @@ class _HomePageState extends State<HomePage> {
         'icon': Icons.book,
         'color': Colors.blue[100]!,
         'route': '/documents',
+      },
+      {
+        'title': 'Events',
+        'icon': Icons.event,
+        'color': Colors.purple[100]!,
+        'route': '/events',
+      },
+      {
+        'title': 'Courses',
+        'icon': Icons.book,
+        'color': Colors.indigo[100]!,
+        'route': '/courses',
       },
     ];
     
